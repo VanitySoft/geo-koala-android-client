@@ -1,0 +1,163 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.vanitysoft.reapefire</groupId>
+	<artifactId>reaperfire-android</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>apk</packaging>
+	<name>com.vanitysoft.reapefire</name>
+	<inceptionYear>2010</inceptionYear>
+	<organization>
+		<name>VanitySoft,LLC.</name>
+		<url>http://www.vanity-soft.com</url>
+	</organization>
+
+	<properties>
+		<android-platform>20</android-platform>
+		<android-maven-plugin-version>3.8.2</android-maven-plugin-version>
+		<maven-compiler-plugin-version>3.0</maven-compiler-plugin-version>
+		<java-version>1.6</java-version>
+		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
+		<com.google.android-version>4.1.1.4</com.google.android-version>
+		<!-- Available Android versions: 1.5_r3, 1.5_r4, 1.6_r2, 2.1.2, 2.1_r1, 
+			2.2.1, 2.3.1, 2.3.3, 4.0.1.2, 4.1.1.4 -->
+		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
+		<org.codehaus.jackson-version>1.9.11</org.codehaus.jackson-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android</artifactId>
+			<version>${com.google.android-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-rest-template</artifactId>
+			<version>${org.springframework.android-version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.cocoahero.android</groupId>
+		  <artifactId>geojson</artifactId>
+		  <version>1.0.0</version>
+		  <type>aar</type>
+		</dependency>
+		<!-- Jackson JSON Processor -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${org.codehaus.jackson-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sonatype.aether</groupId>
+			<artifactId>aether-api</artifactId>
+			<version>1.13.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSpring Repository</name>
+			<url>http://repo.springsource.org/release</url>
+		</repository>
+	  <repository>
+	    <id>central</id>
+	    <url>http://repo1.maven.org/maven2/</url>
+	  </repository>
+	   <repository>
+    <id>ibiblio.org-releases</id>
+    <url>http://mirrors.ibiblio.org/maven2/</url>
+  </repository>	
+	</repositories>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>1.8.3-SNAPSHOT</version>
+			</plugin>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<version>${android-maven-plugin-version}</version>
+				<configuration>
+					<sdk>
+						<platform>${android-platform}</platform>
+						<path>${env.ANDROID_HOME}</path>
+					</sdk>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+					<undeployBeforeDeploy>true</undeployBeforeDeploy>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin-version}</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.jayway.maven.plugins.android.generation2
+										</groupId>
+										<artifactId>
+											android-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.8.0,)
+										</versionRange>
+										<goals>
+											<goal>consume-aar</goal>
+											<goal>
+												generate-sources
+											</goal>
+											<goal>proguard</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<url>http://23.92.28.237/reaperfire</url>
+	<description>An Android client for theReaperfire Server</description>
+</project>
