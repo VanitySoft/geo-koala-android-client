@@ -1,4 +1,6 @@
 geo-koala-android-client
 ========================
 
-client for the geoKoala public rest api.
+This Client submits GeoJson Events(user's current lat/long) to:
+
+http://api.reaperfire.com/reaperfire/#!/events/saveEvents
