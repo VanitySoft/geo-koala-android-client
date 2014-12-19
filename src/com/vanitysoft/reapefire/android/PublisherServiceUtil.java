@@ -1,9 +1,12 @@
 package com.vanitysoft.reapefire.android;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -57,7 +60,19 @@ public class PublisherServiceUtil {
 			}
 		    }
 		    //Add event to properties.
+	
+		    jsonObject.put("address", event.getAddress());
+		    jsonObject.put("attachment", event.getAttachment());
+		    jsonObject.put("azimuth", event.getAzimuth());
+		    jsonObject.put("dateTime", toDateTimeString (event.getDateTime() ));//comeback
 		    jsonObject.put("email", event.getEmail());
+		    jsonObject.put("inclination", event.getInclination());
+		    jsonObject.put("appKey", event.getIndexKey());
+		    jsonObject.put("info", event.getInfo());
+		    jsonObject.put("phone", event.getPhone());
+		    jsonObject.put("url", event.getUrl());
+		    jsonObject.put("uuid", event.getUuid());
+		    
 		     
 		    feature.setProperties(jsonObject);
 			  
@@ -67,8 +82,6 @@ public class PublisherServiceUtil {
 	    
 	    	JSONObject topNode = featureCollection.toJSON();		
 		 
-		Log.e(TAG,topNode.toString());
-		
 		 
 	    final HttpBasicAuthentication authHeader = new HttpBasicAuthentication(
 		    username, password);
@@ -93,13 +106,12 @@ public class PublisherServiceUtil {
 			+ "/v1/public/accounts/" + appKey + "/events";
 		
 		final ObjectMapper mapper = new ObjectMapper();
+		
 		final JsonNode featureCollectionJsonNode = mapper.readTree(topNode.toString());
 		
 		final HttpEntity< JsonNode > entity = new HttpEntity<JsonNode>(
 			featureCollectionJsonNode , requestHeaders);
-		
-		Log.e(TAG, "post url [" + url +"]");
-		
+		 
 	 	
 		final ResponseEntity<JsonNode> response = restTemplate
 			.exchange(url, HttpMethod.POST, entity,JsonNode.class);
@@ -110,7 +122,7 @@ public class PublisherServiceUtil {
 		    events.clear();
 		}
 	    } catch (final HttpClientErrorException e) {
-		Log.e(TAG, e.getLocalizedMessage(), e);
+ 
 		statusJSONObject.put("error", e.getLocalizedMessage());
 	    }
 	    
@@ -125,5 +137,11 @@ public class PublisherServiceUtil {
 		}
 		return byteArray;
 	    }
+    
+    public static String toDateTimeString(Date date) throws ParseException {
+	final SimpleDateFormat simpleDateformat = new SimpleDateFormat(
+		"MM/dd/yy HH:mm:ss");
+	return simpleDateformat.format(date);
+    }
 
 }

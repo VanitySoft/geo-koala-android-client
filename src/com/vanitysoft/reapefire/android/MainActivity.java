@@ -16,6 +16,7 @@
 
 package com.vanitysoft.reapefire.android;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -54,13 +55,13 @@ public class MainActivity extends AbstractAsyncActivity {
 	setContentView(R.layout.main_activity_layout);
 
 	EditText editText = (EditText) findViewById(R.id.username);
-	editText.setText("test@gmail.com", BufferType.EDITABLE);
+	editText.setText("geokoala", BufferType.EDITABLE);
 
 	EditText editTextPassword = (EditText) findViewById(R.id.password);
-	editTextPassword.setText("password", BufferType.EDITABLE);
+	editTextPassword.setText("fbde14be-bfc5-496f-a56b-6df55644ff27", BufferType.EDITABLE);
 
 	EditText editTextAppKey = (EditText) findViewById(R.id.accountKey);
-	editTextAppKey.setText("e391hf01U9838hdo1hUs19IJFIQFa",
+	editTextAppKey.setText("393233d9-7997-4649-8291-73102d4b7358",
 		BufferType.EDITABLE);
 
 	// Initiate the request to the protected service
@@ -117,7 +118,10 @@ public class MainActivity extends AbstractAsyncActivity {
 	       
 	   
 	    final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	    final String uuid = get10DigitPhoneNumber();
+	    
+	    TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+	    
+	    final String uuid = getPhoneNumber();
 
 	    final Collection<Event> events = new ArrayList<Event>();
 
@@ -164,10 +168,17 @@ public class MainActivity extends AbstractAsyncActivity {
 
 		event.setUrl(googleStreetView);
 
-		event.setDescription(new String("<img src='" + googleStreetView
-			+ "'/><br/&gt; [" + event.getUuid()
-			+ "] Cell phone movements").getBytes());
-		event.setEmail("unknown");
+		try {
+		    event.setDescription(new String("<img src='" + googleStreetView
+		    	+ "'/><br/&gt; [" + event.getUuid()
+		    	+ "] Cell phone movements [" + PublisherServiceUtil.toDateTimeString(event.getDateTime()) ).getBytes());
+		} catch (ParseException e1) {
+ 
+		    e1.printStackTrace();
+		}
+		
+		event.setEmail("jeryl.cook@vanity-soft.com");
+		
 		event.setThumbnail(null);
 
 		synchronized (events) {

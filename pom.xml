@@ -78,6 +78,15 @@
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test/src/java</testSourceDirectory>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</testResource>
+		</testResources>		
 		<plugins>
 			<plugin>
 				<groupId>com.google.appengine</groupId>

@@ -103,16 +103,6 @@ public class MainActivity extends AbstractAsyncActivity {
 	protected void onPreExecute() {
 	    showLoadingProgressDialog();
 
-	    // build the message object
-	    // EditText editText = (EditText) findViewById(R.id.username);
-	    // this.username = editText.getText().toString();
-
-	    // editText = (EditText) findViewById(R.id.password);
-	    // this.password = editText.getText().toString();
-
-	    // editText = (EditText) findViewById(R.id.accountKey);
-	    // this.accountKey = editText.getText().toString();
-
 	}
 
 	@Override
