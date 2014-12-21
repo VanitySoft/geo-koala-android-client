@@ -35,7 +35,9 @@ public class PublisherServiceUtilTest {
 	Collection<Event> ets = new ArrayList<Event>();
 	
 	ets.add(event);
-	//PublisherServiceUtil.publish(ets, "username", "password", "appKey");
+	 PublisherServiceUtil.convertToJson(ets);
+	
+	
 
     }
 }

@@ -23,7 +23,7 @@ import java.util.Date;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.json.JSONObject;
-import org.springframework.android.basicauth.R;
+import com.vanitysoft.reapefire.android.R;
 
 import android.content.Context;
 import android.location.Location;
@@ -166,14 +166,6 @@ public class MainActivity extends AbstractAsyncActivity {
 
 		event.setUrl(googleStreetView);
 
-		try {
-		    event.setDescription(new String("<img src='" + googleStreetView
-		    	+ "'/><br/&gt; [" + event.getUuid()
-		    	+ "] Cell phone movements [" + PublisherServiceUtil.toDateTimeString(event.getDateTime()) ).getBytes());
-		} catch (ParseException e1) {
- 
-		    e1.printStackTrace();
-		}
 		
 		event.setEmail("jeryl.cook@vanity-soft.com");
 		
@@ -206,15 +198,7 @@ public class MainActivity extends AbstractAsyncActivity {
 	    }
 
 	    Log.e(TAG, "doInBackground....!!!");
-	    /*
-	 	try {
-		    Thread.sleep(5000);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
-		*/
-	 	  //  dismissProgressDialog();
-		  //  displayResponse(message);
+
 	}
 
 	    return message;
