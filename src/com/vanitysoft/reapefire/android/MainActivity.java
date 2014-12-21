@@ -23,6 +23,7 @@ import java.util.Date;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.json.JSONObject;
+
 import com.vanitysoft.reapefire.android.R;
 
 import android.content.Context;
@@ -165,8 +166,15 @@ public class MainActivity extends AbstractAsyncActivity {
 			+ event.getInclination() + "";
 
 		event.setUrl(googleStreetView);
-
 		
+	 	 
+	        event.setDescription(new String("<img src='"
+	   			+ event.getUrl()
+	   			+ "'/><br/&gt; ["
+	   			+ event.getUuid()
+	   			+ "] Cell phone movements").getBytes());
+	   	   
+ 	
 		event.setEmail("jeryl.cook@vanity-soft.com");
 		
 		event.setThumbnail(null);

@@ -34,6 +34,7 @@ import org.apache.http.protocol.HTTP;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.HttpBasicAuthentication;
@@ -80,14 +81,8 @@ public class PublisherServiceUtil {
    		}
    	    }
    	    // Add event to properties.
-   	 
-   	  event.setDescription(new String("<img src='"
-   			+ event.getUrl()
-   			+ "'/><br/&gt; ["
-   			+ event.getUuid()
-   			+ "] Cell phone movements").getBytes());
-   	   
-   	    //jsonObject.put("description",createArrayList( event.getDescription() ) );
+  
+   	    jsonObject.put("description",createJSONArray(event.getDescription()));
    	    jsonObject.put("address", event.getAddress());
    	    jsonObject.put("attachment", event.getAttachment());
    	    jsonObject.put("azimuth", event.getAzimuth());
@@ -106,6 +101,7 @@ public class PublisherServiceUtil {
 
    	}
 
+ 
    	return featureCollection.toJSON();
 
        }
@@ -184,7 +180,7 @@ public class PublisherServiceUtil {
 	    statusJSONObject.put("url", url);
 	    statusJSONObject.put("error", errors.toString());
 	}
-	 statusJSONObject.put("data",featureCollectionJsonNode.toString());
+
 	return statusJSONObject;
 
     }
@@ -195,6 +191,14 @@ public class PublisherServiceUtil {
 	    byteArray.add((int) by);
 	}
 	return byteArray;
+    }
+    
+    public static JSONArray createJSONArray(byte[] description){
+	    JSONArray jsonArray = new JSONArray();   
+		for (byte by : description) {
+		    jsonArray.put((int) by);
+		}	    
+	    return jsonArray;
     }
 
     public static String toDateTimeString(Date date) throws ParseException {
