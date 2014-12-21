@@ -167,6 +167,6 @@
 		</pluginManagement>
 	</build>
 
-	<url>http://23.92.28.237/reaperfire</url>
+	<url>http://api.reaperfire.com/reaperfire</url>
 	<description>An Android client for theReaperfire Server</description>
 </project>

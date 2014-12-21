@@ -60,7 +60,7 @@ public class PublisherServiceUtil {
 			}
 		    }
 		    //Add event to properties.
-	
+		    jsonObject.put("description", event.getDescription());
 		    jsonObject.put("address", event.getAddress());
 		    jsonObject.put("attachment", event.getAttachment());
 		    jsonObject.put("azimuth", event.getAzimuth());
@@ -89,7 +89,10 @@ public class PublisherServiceUtil {
 	    final HttpHeaders requestHeaders = new HttpHeaders();
 	    
 	    requestHeaders.setAuthorization(authHeader);
-	    
+
+	    requestHeaders.add("X-Mashape-Key", "E0yCNooETJmsh1J1S4me9PvLaZgXp1Ryh4LjsnsSSjbIYqOxYl");
+	
+    
 	    requestHeaders.setAccept(Collections
 		    .singletonList(MediaType.APPLICATION_JSON));
 

@@ -89,11 +89,11 @@ public class MainActivity extends AbstractAsyncActivity {
     private class FetchSecuredResourceTask<HttpAuthentication> extends
 	    AsyncTask<Object, Object, Message> {
 
-	private String username = "test@gmail.com";
+	private String username = "geokoala";
 
-	private String password = "password";
+	private String password = "fbde14be-bfc5-496f-a56b-6df55644ff27";
 
-	private String accountKey = "e391hf01U9838hdo1hUs19IJFIQFa";
+	private String accountKey = "393233d9-7997-4649-8291-73102d4b7358";
 
 	@Override
 	protected void onPreExecute() {
@@ -118,8 +118,6 @@ public class MainActivity extends AbstractAsyncActivity {
 	       
 	   
 	    final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	    
-	    TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 	    
 	    final String uuid = getPhoneNumber();
 

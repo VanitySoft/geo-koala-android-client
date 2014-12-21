@@ -12,7 +12,7 @@ public class Event {
     String id;
     String uuid = "";
     String indexKey = "";
-    byte[] description = "www.vanity-soft.com".getBytes();
+    byte[] description = "".getBytes();
     String attachment = "";
     String address = "";
     String email = "";;
