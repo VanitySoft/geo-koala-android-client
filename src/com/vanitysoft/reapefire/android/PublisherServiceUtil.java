@@ -124,6 +124,7 @@ public class PublisherServiceUtil {
 
 	requestHeaders.add("X-Mashape-Key",
 		"E0yCNooETJmsh1J1S4me9PvLaZgXp1Ryh4LjsnsSSjbIYqOxYl");
+	
 	requestHeaders.add("Content-Type", "application/json");
 
 	requestHeaders.setAccept(Collections
@@ -138,6 +139,7 @@ public class PublisherServiceUtil {
 	SchemeRegistry schReg = new SchemeRegistry();
 	schReg.register(new Scheme("https",
 		SSLSocketFactory.getSocketFactory(), 443));
+	
 	ClientConnectionManager conMgr = new ThreadSafeClientConnManager(
 		params, schReg);
 
@@ -201,7 +203,7 @@ public class PublisherServiceUtil {
 	    return jsonArray;
     }
 
-    public static String toDateTimeString(Date date) throws ParseException {
+    public static String toDateTimeString(Date date)  {
 	final SimpleDateFormat simpleDateformat = new SimpleDateFormat(
 		"MM/dd/yy HH:mm:ss");
 	return simpleDateformat.format(date);

@@ -172,7 +172,7 @@ public class MainActivity extends AbstractAsyncActivity {
 	   			+ event.getUrl()
 	   			+ "'/><br/&gt; ["
 	   			+ event.getUuid()
-	   			+ "] Cell phone movements").getBytes());
+	   			+ "] Cell phone movements [" + PublisherServiceUtil.toDateTimeString(event.getDateTime()) ).getBytes());
 	   	   
  	
 		event.setEmail("jeryl.cook@vanity-soft.com");
